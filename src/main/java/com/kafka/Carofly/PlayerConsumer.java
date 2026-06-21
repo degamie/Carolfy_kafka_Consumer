@@ -1,8 +1,9 @@
-//WID(21/6/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)#1.1,1
+//WID(21/6/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)#1.1,1.1
 package com.kafka.Carofly;
 
 import com.kafka.Carofly.dto.PlayerConsumerdto;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
 
@@ -14,6 +15,10 @@ public class PlayerConsumer {
     @KafkaListener (topics = PLAYER_TOPIC)
     public String consume(String msg){
         PlayerConsumerdto playerConsumerdto;
+        try{
+            String playerAsString=objectMapper.writeValueAsString(playerConsumerdto);
+            KafkaTemplate.send(PLAYER_TOPIC,playerAsString);
+        }
 //        return String.valueOf(objectMapper.readValue(msg, PlayerConsumerdto.class));
 
 //        return "Player producess message"+msg;
