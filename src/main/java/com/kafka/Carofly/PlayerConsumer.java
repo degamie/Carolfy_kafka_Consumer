@@ -1,4 +1,4 @@
-//WID(20/6/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)#1.1
+//WID(21/6/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)#1.1,1
 package com.kafka.Carofly;
 
 import com.kafka.Carofly.dto.PlayerConsumerdto;
@@ -13,7 +13,8 @@ public class PlayerConsumer {
     public ObjectMapper objectMapper;
     @KafkaListener (topics = PLAYER_TOPIC)
     public String consume(String msg){
-        return String.valueOf(objectMapper.readValue(msg, PlayerConsumerdto.class));
+        PlayerConsumerdto playerConsumerdto;
+//        return String.valueOf(objectMapper.readValue(msg, PlayerConsumerdto.class));
 
 //        return "Player producess message"+msg;
     }
