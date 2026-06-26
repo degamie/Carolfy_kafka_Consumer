@@ -23,5 +23,13 @@ public class PlayerConsumerdto {
     public  int score;
     public LocalTime playermodifieddate;
     public  Integer plaayerspeedaccuracy;
+
+    public boolean getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(boolean playerName) {
+        this.playerName = playerName;
+    }
 }
 
