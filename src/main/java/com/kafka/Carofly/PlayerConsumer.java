@@ -18,7 +18,7 @@ public class PlayerConsumer {
     public String PLAYER_TOPIC="PLAYER_TOPIC";
     public ObjectMapper objectMapper;
     @KafkaListener (topics = PLAYER_TOPIC)
-    public String consume(String msg) {
+    public void consume(String msg) {
         PlayerConsumerdto playerConsumerdto;
         try {
             String playerAsString = objectMapper.writeValueAsString(playerConsumerdto);
