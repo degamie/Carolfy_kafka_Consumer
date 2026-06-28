@@ -1,4 +1,4 @@
-//WID(26/6/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)#1.1,1.1.1.1
+//WID(28/6/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)#1.1,1.1.1.1
 package com.kafka.Carofly;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kafka.Carofly.dto.PlayerConsumerdto;
@@ -10,6 +10,7 @@ import tools.jackson.databind.ObjectMapper;
 
 @Component
 public class PlayerConsumer {
+    public PlayerConsumer playerconsumer;
     public String getPLAYER_TOPIC() {
         return PLAYER_TOPIC;
     }

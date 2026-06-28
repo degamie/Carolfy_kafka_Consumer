@@ -19,6 +19,7 @@ public class PlayerConsumerdto {
         this.playermodifieddate=playermodifieddate;
 
     }
+
     public void setplayermodifieddate(LocalTime playermodifieddate){this.playermodifieddate=playermodifieddate;}//Binding PlayerModifiedDate i  GameApp
     public void setPlaayerspeedaccuracy(Integer plaayerspeedaccuracy){this.plaayerspeedaccuracy=plaayerspeedaccuracy;}//bidning PlayerSpeed Accuracy in Appp
     public String getplayerId(String playerId){return playerId;}//Fetching PlayerId in Game App
@@ -27,8 +28,6 @@ public class PlayerConsumerdto {
     public String playername;
     public  int score;
     public LocalTime playermodifieddate;
-
-
 
     public  Integer plaayerspeedaccuracy;
 
