@@ -1,4 +1,4 @@
-//WID(30/6/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)
+//WID(02/07/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)#1
 package com.kafka.Carofly;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kafka.Carofly.dto.PlayerConsumerdto;
@@ -10,6 +10,8 @@ import tools.jackson.databind.ObjectMapper;
 
 @Component
 public class PlayerConsumer {
+    KafkaTemplate<String,Integer>kafkaTemplate;
+    public void setKafkaTemplate(KafkaTemplate<String,Integer>kafkaTemplate){this.kafkaTemplate=kafkaTemplate;}//binding kafkaTemplate in GameApp
     public void setPlayerconsumer(PlayerConsumer consumer){this.playerconsumer=playerconsumer;}//binding playerconsumer's Instance in GameApp
     PlayerConsumer(String PLAYER_TOPIC){
         this.PLAYER_TOPIC=PLAYER_TOPIC;
