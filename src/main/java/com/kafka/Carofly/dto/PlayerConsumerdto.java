@@ -1,12 +1,14 @@
-//WID(06/07/2026)(Sarthak Mittal(DegamieSign)(PlayerConsumerDto)#1.1.1,1,1
+//WID(18/07/2026)(Sarthak Mittal(DegamieSign)(PlayerConsumerDto)#1.Impl
 package com.kafka.Carofly.dto;
 
 //import com.networknt.schema.format.TimeFormat;
 
 import java.time.LocalTime;
+import java.util.Date;
 
 
 public class PlayerConsumerdto {
+    public Date playerDateCreated;
     public void setPlayerSpeed(int playerSpeed){this.playerSpeed=playerSpeed;}//binding PlayerSpeed in GameApp
     public    int  playerSpeed=0;
     public Integer getPlaayerspeedaccuracy() {
