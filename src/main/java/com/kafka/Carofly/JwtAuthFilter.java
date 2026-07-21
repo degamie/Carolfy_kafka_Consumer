@@ -1,4 +1,4 @@
-//WID(12/07/2026(Sarthak Mittal(DegamieSign(JwtAuthFilter#1)).1
+//WID(21/07/2026(Sarthak Mittal(DegamieSign(JwtAuthFilter#1)).1(Impl)
 package com.kafka.Carofly;
 
 import org.apache.catalina.filters.HttpHeaderSecurityFilter;
@@ -9,6 +9,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 
 public class JwtAuthFilter extends HttpHeaderSecurityFilter{
+    JwtAuthFilter jwtAuthFilter;
+    JwtAuthFilter(JwtAuthFilter jwtAuthFilter,String header){
+        this.jwtAuthFilter=jwtAuthFilter;
+        this.header=header;
+    }
     public void setHeader(String header){this.header=header;}
     public String header;
     @Autowired
