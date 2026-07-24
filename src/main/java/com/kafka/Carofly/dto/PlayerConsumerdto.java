@@ -1,4 +1,4 @@
-//WID(18/07/2026)(Sarthak Mittal(DegamieSign)(PlayerConsumerDto)#1.Impl
+//WID(24/07/2026)(Sarthak Mittal(DegamieSign)(PlayerConsumerDto)#1.Impl.1
 package com.kafka.Carofly.dto;
 
 //import com.networknt.schema.format.TimeFormat;
@@ -9,6 +9,7 @@ import java.util.Date;
 
 public class PlayerConsumerdto {
     public Date playerDateCreated;
+    public void setPlayerDateCreated(Date playerDateCreated){this.playerDateCreated=playerDateCreated;}
     public void setPlayerSpeed(int playerSpeed){this.playerSpeed=playerSpeed;}//binding PlayerSpeed in GameApp
     public    int  playerSpeed=0;
     public Integer getPlaayerspeedaccuracy() {
@@ -21,10 +22,10 @@ public class PlayerConsumerdto {
     this.playermodifieddate = playermodifieddate;
 }
 
-      PlayerConsumerdto(String playerId, String playername, int score, LocalTime playermodifieddate, Integer plaayerspeedaccuracy){
+      PlayerConsumerdto(String playerId, String playerName, int score, LocalTime playermodifieddate, Integer plaayerspeedaccuracy){
         this.playerId=playerId;
         this.plaayerspeedaccuracy=plaayerspeedaccuracy;
-        this.playername=playername;
+        this.playerName=playerName;
         this.score=score;
         this.playermodifieddate=playermodifieddate;
 
@@ -35,18 +36,18 @@ public class PlayerConsumerdto {
     public String getplayerId(String playerId){return playerId;}//Fetching PlayerId in Game App
   public void setScore(int score){this.score=score;}
     public String playerId;
-    public String playername;
+    public String playerName;
     public  int score;
     public LocalTime playermodifieddate;
 
     public  Integer plaayerspeedaccuracy;
 
-    public boolean getPlayerName() {
+    public String getPlayerName() {
         return playerName;
     }
 
-    public void setPlayerName(boolean playerName) {
-        this.playerName = playerName;
+    public void setPlayerName(String layerName) {
+        this.playerName=playerName;
     }
 }
 
