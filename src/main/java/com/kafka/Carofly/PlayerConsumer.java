@@ -19,6 +19,7 @@ public class PlayerConsumer {
     PlayerConsumerdto playerConsumerdto;
     KafkaTemplate<String,Integer>kafkaTemplate;
 
+    public void setLogger(Logger logger){this.logger=logger;}
     public Logger logger= LoggerFactory.getLogger(PlayerConsumer.class);
     public String PLAYER_TOPIC="PLAYER_TOPIC";
 
