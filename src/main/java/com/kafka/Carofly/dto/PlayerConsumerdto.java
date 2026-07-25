@@ -1,53 +1,117 @@
-//WID(24/07/2026)(Sarthak Mittal(DegamieSign)(PlayerConsumerDto)#1.Impl.1
 package com.kafka.Carofly.dto;
 
-//import com.networknt.schema.format.TimeFormat;
+import tools.jackson.databind.ObjectMapper;
 
 import java.time.LocalTime;
 import java.util.Date;
 
-
 public class PlayerConsumerdto {
-    public Date playerDateCreated;
-    public void setPlayerDateCreated(Date playerDateCreated){this.playerDateCreated=playerDateCreated;}
-    public void setPlayerSpeed(int playerSpeed){this.playerSpeed=playerSpeed;}//binding PlayerSpeed in GameApp
-    public    int  playerSpeed=0;
-    public Integer getPlaayerspeedaccuracy() {
-        return plaayerspeedaccuracy;
+    private String playerId;
+    private String playerName;
+    private int score;
+    private int playerSpeed;
+    private Integer playerSpeedAccuracy;
+    private Date playerDateCreated;
+    private LocalTime playerModifiedDate;
+
+    public PlayerConsumerdto(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
     }
 
-    public Integer gerScore(Integer score){return score;}
-    public void setPlayerId(String playerId){this.playerId=playerId;}//Binding PlayerId in GameApp
-    public void setPlayermodifieddate(LocalTime playermodifieddate) {
-    this.playermodifieddate = playermodifieddate;
-}
+    public ObjectMapper objectMapper;
 
-      PlayerConsumerdto(String playerId, String playerName, int score, LocalTime playermodifieddate, Integer plaayerspeedaccuracy){
-        this.playerId=playerId;
-        this.plaayerspeedaccuracy=plaayerspeedaccuracy;
-        this.playerName=playerName;
-        this.score=score;
-        this.playermodifieddate=playermodifieddate;
-
+    public void setObjectMapper(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
     }
 
-    public void setplayermodifieddate(LocalTime playermodifieddate){this.playermodifieddate=playermodifieddate;}//Binding PlayerModifiedDate i  GameApp
-    public void setPlaayerspeedaccuracy(Integer plaayerspeedaccuracy){this.plaayerspeedaccuracy=plaayerspeedaccuracy;}//bidning PlayerSpeed Accuracy in Appp
-    public String getplayerId(String playerId){return playerId;}//Fetching PlayerId in Game App
-  public void setScore(int score){this.score=score;}
-    public String playerId;
-    public String playerName;
-    public  int score;
-    public LocalTime playermodifieddate;
 
-    public  Integer plaayerspeedaccuracy;
+    public ObjectMapper getObjectMapper() {
+        return objectMapper;
+    }
+
+    public PlayerConsumerdto() {
+    }
+
+    public PlayerConsumerdto(
+            String playerId,
+            String playerName,
+            int score,
+            LocalTime playerModifiedDate,
+            Integer playerSpeedAccuracy) {
+
+        this.playerId = playerId;
+        this.playerName = playerName;
+        this.score = score;
+        this.playerModifiedDate = playerModifiedDate;
+        this.playerSpeedAccuracy = playerSpeedAccuracy;
+    }
+
+    public String getPlayerId(String msg) {
+        return playerId;
+    }
+
+    public void setPlayerId(String playerId) {
+        this.playerId = playerId;
+    }
 
     public String getPlayerName() {
         return playerName;
     }
 
-    public void setPlayerName(String layerName) {
-        this.playerName=playerName;
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getPlayerSpeed() {
+        return playerSpeed;
+    }
+
+    public void setPlayerSpeed(int playerSpeed) {
+        this.playerSpeed = playerSpeed;
+    }
+
+    public Integer getPlayerSpeedAccuracy() {
+        return playerSpeedAccuracy;
+    }
+
+    public void setPlayerSpeedAccuracy(Integer playerSpeedAccuracy) {
+        this.playerSpeedAccuracy = playerSpeedAccuracy;
+    }
+
+    public Date getPlayerDateCreated() {
+        return playerDateCreated;
+    }
+
+    public void setPlayerDateCreated(Date playerDateCreated) {
+        this.playerDateCreated = playerDateCreated;
+    }
+
+    public LocalTime getPlayerModifiedDate() {
+        return playerModifiedDate;
+    }
+
+    public void setPlayerModifiedDate(LocalTime playerModifiedDate) {
+        this.playerModifiedDate = playerModifiedDate;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerConsumerDto{" +
+                "playerId='" + playerId + '\'' +
+                ", playerName='" + playerName + '\'' +
+                ", score=" + score +
+                ", playerSpeed=" + playerSpeed +
+                ", playerSpeedAccuracy=" + playerSpeedAccuracy +
+                ", playerDateCreated=" + playerDateCreated +
+                ", playerModifiedDate=" + playerModifiedDate +
+                '}';
     }
 }
-
