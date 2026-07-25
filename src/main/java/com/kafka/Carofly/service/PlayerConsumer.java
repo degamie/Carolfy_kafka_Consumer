@@ -1,10 +1,12 @@
-//WID(25/07/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(player message consume(producer)
+//WID(25/07/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(player message consume(producer)#1
 package com.kafka.Carofly.service;
 import com.kafka.Carofly.dto.PlayerConsumerdto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.ChatClient;
 //import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -14,8 +16,6 @@ import tools.jackson.databind.ObjectMapper;
 //@EnableDiscoveryClient
 public class PlayerConsumer {
     public ChatClient chatClinet;//Anthropic Ai Chat Client Obj declare
-    PlayerConsumerdto playerConsumerdto;//playerConsumer entity obj declare
-    public Logger logger= LoggerFactory.getLogger(PlayerConsumer.class);//Logger obj declare
     public String PLAYER_TOPIC="PLAYER_TOPIC";//Player Topic declare
     public ObjectMapper objectMapper;
 
@@ -24,40 +24,30 @@ public class PlayerConsumer {
 
     //Consuming Player messaage///
     @KafkaListener (topics = "player-topics", groupId = "${spring.kafka.consumer.group-id}")//Kafka Topics and group id declare
-    public void consume(String msg) throws Exception {//consume method declare
-        logger.info("Recieving Player Message from Kafka: {}",  msg);//Printing Recieved Player's
+    public void consume(String msg, PlayerConsumerdto playerConsumerdto,ChatClient chatClient) throws Exception {//consume method declare
+        String prompt = "Process player: " + playerConsumerdto.getPlayerName();
+        String response=chatClient.prompt(prompt).call().content();
+        System.out.println("Recieving Player Message from Kafka: {}" +msg +response);//Printing Recieved Player's
+
+
         System.out.println("=============");
         System.out.println(playerConsumerdto.getPlayerId(msg));//Priniting  fetched Playerid in live game Server
         System.out.println(playerConsumerdto.getPlayerName());//Priniting  fetched PlayerName in live game Server
         System.out.println("=============");
     }
-    public PlayerConsumer(ChatClient chatClinet, PlayerConsumerdto playerConsumerdto, Logger logger, String PLAYER_TOPIC, ObjectMapper objectMapper, KafkaTemplate<String, Integer> kafkaTemplate, PlayerConsumer playerconsumer) {
-        this.chatClinet = chatClinet;
-        this.playerConsumerdto = playerConsumerdto;
-        this.logger = logger;
-        this.PLAYER_TOPIC = PLAYER_TOPIC;
-        this.objectMapper = objectMapper;
-        this.kafkaTemplate = kafkaTemplate;
-        this.playerconsumer = playerconsumer;
-    }
-
-
 }
-
-//    public void setPlayerTopic(String PLAYER_TOPIC){this.PLAYER_TOPIC=PLAYER_TOPIC;}//PlayerTopic's  Instantiation in GameApp
-//    public void setPlayerConsumerdto(PlayerConsumerdto playerConsumerdto){this.playerConsumerdto=playerConsumerdto;}
-//
-//
-//    public void setKafkaTemplate(KafkaTemplate<String,Integer>kafkaTemplate){this.kafkaTemplate=kafkaTemplate;}//binding kafkaTemplate in GameApp
-//    public void setPlayerconsumer(PlayerConsumer consumer){this.playerconsumer=playerconsumer;}//binding playerconsumer's Instance in GameApp
-////    PlayerConsumer(String PLAYER_TOPIC){
-////        this.PLAYER_TOPIC=PLAYER_TOPIC;
-////    }
-//    public ObjectMapper getObjectMapper(ObjectMapper objectMapper){return objectMapper;}
-//
-//    public String getPLAYER_TOPIC() {
-//        return PLAYER_TOPIC;
+//    public PlayerConsumer(ChatClient chatClinet, String PLAYER_TOPIC, ObjectMapper objectMapper, KafkaTemplate<String, Integer> kafkaTemplate, PlayerConsumer playerconsumer) {
+//        this.chatClinet = chatClinet;
+//        this.PLAYER_TOPIC = PLAYER_TOPIC;
+//        this.objectMapper = objectMapper;
+//        this.kafkaTemplate = kafkaTemplate;
+//        this.playerconsumer = playerconsumer;
 //    }
-//
-//    public void setPLAYER_TOPIC(String PLAYER_TOPIC){this.PLAYER_TOPIC=PLAYER_TOPIC;}
-//    public void setObjectMapper(ObjectMapper objectMapper){this.objectMapper=objectMapper;}//Binding ObjectMapper in GameApp
+
+//        this.logger = logger;
+
+    // PlayerConsumerdto playerConsumerdto;//playerConsumer entity obj declare
+//    @Bean
+//    public Logger logger= LoggerFactory.getLogger(PlayerConsumer.class);//Logger obj declare
+
+//    private final PlayerConsumerdto playerConsumerdto;
