@@ -1,18 +1,25 @@
-//WID(25/07/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(player message consume(producer)#1
+//WID(27/07/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(player message consume(producer)#1
 package com.kafka.Carofly.service;
 import com.kafka.Carofly.dto.PlayerConsumerdto;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import tools.jackson.databind.ObjectMapper;
 
 @Service
+@EnableKafka
 @EnableDiscoveryClient
+
 public class PlayerConsumer {
     public ChatClient chatClinet;//Anthropic Ai Chat Client Obj declare
+    @Value("$spring.kafka.bootstrap-servers")
+    public String bootstrapServers;
     public String PLAYER_TOPIC="PLAYER_TOPIC";//Player Topic declare
+
     public ObjectMapper objectMapper;
 
     KafkaTemplate<String,Integer>kafkaTemplate;
