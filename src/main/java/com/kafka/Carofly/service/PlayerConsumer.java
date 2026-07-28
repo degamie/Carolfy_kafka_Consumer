@@ -1,4 +1,4 @@
-//WID(27/07/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(player message consume(producer)#1
+//WID(28/07/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(player message consume(producer)#1
 package com.kafka.Carofly.service;
 import com.kafka.Carofly.dto.PlayerConsumerdto;
 import org.springframework.ai.chat.client.ChatClient;
@@ -9,6 +9,9 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import tools.jackson.databind.ObjectMapper;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @EnableKafka
@@ -28,6 +31,7 @@ public class PlayerConsumer {
     //Consuming Player messaage///
     @KafkaListener (topics = "player-topics", groupId = "${spring.kafka.consumer.group-id}")//Kafka Topics and group id declare
     public void consume(String msg, PlayerConsumerdto playerConsumerdto,ChatClient chatClient) throws Exception {//consume method declare
+        Map<String,Object> props=new HashMap<>();
         String prompt = "Processing player in the Game: " + playerConsumerdto.getPlayerName();
         String response=chatClient.prompt(prompt).call().content();
         System.out.println("Recieving Player Message from Kafka: {}" +msg +response);//Printing Recieved Player's
