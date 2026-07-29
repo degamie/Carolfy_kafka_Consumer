@@ -1,12 +1,15 @@
 //WID(29/07/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(playyer_ConsumerFactory)#1
 package com.kafka.Carofly.service;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.deser.std.StringDeserializer;
+import com.kafka.Carofly.dto.ChatMessage;
 import com.kafka.Carofly.dto.PlayerConsumerdto;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.Header;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,8 +34,10 @@ import static org.springframework.kafka.support.serializer.JacksonJsonDeserializ
 @Service
 @EnableKafka
 @EnableDiscoveryClient
+@JsonIgnoreType
 
 public class PlayerConsumer {
+    public  ChatMessage chatMessage;
     Map<String,Object> props=new HashMap<>();
     public ChatClient chatClinet;//Anthropic Ai Chat Client Obj declare
     @Value("$spring.kafka.bootstrap-servers")
@@ -47,13 +52,13 @@ public class PlayerConsumer {
     @Bean
     public ConsumerFactory<String,PlayerConsumerdto>consumerFactory(){
         JsonDeserializer<PlayerConsumerdto> deserializer = new JsonDeserializer<>(PlayerConsumerdto.class) {
-            @Override
-            public PlayerConsumerdto deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JacksonException {
-                return jsonParser+deserializationContext;
-            }
+//            @Override
+//            public PlayerConsumerdto zdeserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JacksonException {
+//                return jsonParser+deserializationContext;
+//            }
         };
-        deserializer.addTrustedPackages("*");
-        deserializer.setUseTypeMapperForKey(true);
+//        deserializer.addTrustedPackages("*");
+//        deserializer.setUseTypeMapperForKey(true);
 
 
 
@@ -64,11 +69,12 @@ public class PlayerConsumer {
         props.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer .class);
         props.put(TRUSTED_PACKAGES, "*");
 
-        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), deserializer);
+//        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), deserializer);
     }
 
 
-
+public ProducerRecord<String, ChatMessage> record =
+        new ProducerRecord<>("client-chat-messages", chatMessage.getClientId(), chatMessage);
     //Consuming Player messaage///
     @KafkaListener (topics = "player-topics", groupId = "${spring.kafka.consumer.group-id}")//Kafka Topics and group id declare
     public void consume(String msg, PlayerConsumerdto playerConsumerdto,ChatClient chatClient) throws Exception {//consume method declare
@@ -84,6 +90,7 @@ public class PlayerConsumer {
         System.out.println(playerConsumerdto.getPlayerName());//Priniting  fetched PlayerName in live game Server
         System.out.println("=============");
         String token=new String(authHeader.value(), StandardCharsets.UTF_8);
+        ChatMessage chatMessage=record.value();
     }
 }
 //    public PlayerConsumer(ChatClient chatClinet, String PLAYER_TOPIC, ObjectMapper objectMapper, KafkaTemplate<String, Integer> kafkaTemplate, PlayerConsumer playerconsumer) {

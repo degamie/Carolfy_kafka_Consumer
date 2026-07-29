@@ -1,4 +1,4 @@
-//WID(26/7/2026)(Sarthak Mittal(AICHatClient)
+//WID(29/7/2026)(Sarthak Mittal(AICHatClient)
 package com.kafka.Carofly.config;
 
 import org.springframework.ai.chat.client.ChatClient;
@@ -8,7 +8,9 @@ import org.springframework.context.annotation.Configuration;
 public class ChatClientConfig
  {
      private  ChatClient chatClient;
-
+public void setChatClient(ChatClient  chatClient){
+    this.chatClient=chatClient;
+}
 //     public ChatClientConfig(ChatClient chatClient){
 //         this.chatClient=chatClient;
 //     }
