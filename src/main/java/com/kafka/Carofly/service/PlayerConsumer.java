@@ -1,4 +1,4 @@
-//WID(28/07/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(playyer_ConsumerFactory)#1
+//WID(29/07/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(playyer_ConsumerFactory)#1
 package com.kafka.Carofly.service;
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.deser.std.StringDeserializer;
 import com.kafka.Carofly.dto.PlayerConsumerdto;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.common.header.Header;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,6 +72,7 @@ public class PlayerConsumer {
     //Consuming Player messaage///
     @KafkaListener (topics = "player-topics", groupId = "${spring.kafka.consumer.group-id}")//Kafka Topics and group id declare
     public void consume(String msg, PlayerConsumerdto playerConsumerdto,ChatClient chatClient) throws Exception {//consume method declare
+        Header authHeader = record.headers().lastHeader("Authorization");
 
         String prompt = "Processing player in the Game: " + playerConsumerdto.getPlayerName();
         String response=chatClient.prompt(prompt).call().content();
@@ -80,6 +83,7 @@ public class PlayerConsumer {
         System.out.println(playerConsumerdto.getPlayerId(msg));//Priniting  fetched Playerid in live game Server
         System.out.println(playerConsumerdto.getPlayerName());//Priniting  fetched PlayerName in live game Server
         System.out.println("=============");
+        String token=new String(authHeader.value(), StandardCharsets.UTF_8);
     }
 }
 //    public PlayerConsumer(ChatClient chatClinet, String PLAYER_TOPIC, ObjectMapper objectMapper, KafkaTemplate<String, Integer> kafkaTemplate, PlayerConsumer playerconsumer) {
