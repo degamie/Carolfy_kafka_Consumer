@@ -20,6 +20,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.stereotype.Service;
 import tools.jackson.databind.ObjectMapper;
@@ -77,7 +78,7 @@ public ProducerRecord<String, ChatMessage> record =
         new ProducerRecord<>("client-chat-messages", chatMessage.getClientId(), chatMessage);
     //Consuming Player messaage///
     @KafkaListener (topics = "player-topics", groupId = "${spring.kafka.consumer.group-id}")//Kafka Topics and group id declare
-    public void consume(String msg, PlayerConsumerdto playerConsumerdto,ChatClient chatClient) throws Exception {//consume method declare
+    public void consume(String msg, PlayerConsumerdto playerConsumerdto,ChatClient chatClient,Acknowledgment ack) throws Exception {//consume method declare
         Header authHeader = record.headers().lastHeader("Authorization");
 
         String prompt = "Processing player in the Game: " + playerConsumerdto.getPlayerName();
@@ -91,6 +92,7 @@ public ProducerRecord<String, ChatMessage> record =
         System.out.println("=============");
         String token=new String(authHeader.value(), StandardCharsets.UTF_8);
         ChatMessage chatMessage=record.value();
+        ack.acknowledge();//Acknowledging Player's Message consumption
     }
 }
 //    public PlayerConsumer(ChatClient chatClinet, String PLAYER_TOPIC, ObjectMapper objectMapper, KafkaTemplate<String, Integer> kafkaTemplate, PlayerConsumer playerconsumer) {
