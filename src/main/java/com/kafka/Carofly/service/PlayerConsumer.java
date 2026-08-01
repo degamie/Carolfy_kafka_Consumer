@@ -1,4 +1,4 @@
-//WID(31/07/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(playyer_ConsumerFactory)#1
+//WID(01/08/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(playyer_ConsumerFactory)#1
 package com.kafka.Carofly.service;
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -37,6 +37,7 @@ public class PlayerConsumer {
     public void setChatClinet(ChatClient chatClient){this.chatClinet=chatClient;}
     public  ChatMessage chatMessage;
     Map<String,Object> props=new HashMap<>();
+    public void setchatClient(ChatClient chatClient){this.chatClinet=chatClient;}
     public ChatClient chatClinet;//Anthropic Ai Chat Client Obj declare
     @Value("$spring.kafka.bootstrap-servers")
     public String bootstrapServers;
