@@ -1,6 +1,10 @@
+//WID(5/8/2026)(Sarthak Mittal)(DegamieSign)
 package com.kafka.Carofly.dto;
 
+import java.text.DateFormat;
+
 public class ChatMessage {
+    public DateFormat recieveddate;
         private String clientId;
         private String sessionId;
         private String message;
