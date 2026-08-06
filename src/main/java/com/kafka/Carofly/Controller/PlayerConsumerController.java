@@ -19,7 +19,7 @@ import java.util.List;
 public class PlayerConsumerController {
     @Autowired
     public PlayerConsumer playerConsumer;
-
+//@As
     @GetMapping("/message")
     public List<PlayerConsumerdto> consume(@RequestBody PlayerConsumerdto playerConsumerdto, @RequestBody ChatClient chatClient, @RequestBody Acknowledgment ack, @RequestAttribute  String msg) throws Exception {//consume method declare
         return playerConsumer.consume(msg,playerConsumerdto,chatClient,ack);
