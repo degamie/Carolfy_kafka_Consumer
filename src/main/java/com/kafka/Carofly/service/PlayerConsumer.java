@@ -1,4 +1,4 @@
-//WID(05    /08/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(playyer_ConsumerFactory)#1.1
+//WID(6/08/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(playyer_ConsumerFactory)#1.1/1
 package com.kafka.Carofly.service;
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -49,6 +49,9 @@ public class PlayerConsumer {
     @Value("$spring.kafka.bootstrap-servers")
     public String bootstrapServers;
     public String PLAYER_TOPIC="PLAYER_TOPIC";//Player Topic declare
+    void setPLAYER_TOPIC(String PLAYER_TOPIC){
+        this.PLAYER_TOPIC=PLAYER_TOPIC;
+    }
 
     public ObjectMapper objectMapper;
 
