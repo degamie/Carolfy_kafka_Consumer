@@ -1,4 +1,4 @@
-//WID(6/8/2026)(Sarthak Mittal(DegamieSign))
+//WID(8/8/2026)(Sarthak Mittal(DegamieSign))#Impl
 package com.kafka.Carofly.service;
 
 import com.kafka.Carofly.dto.ChatMessage;
@@ -11,6 +11,9 @@ import java.util.concurrent.CompletableFuture;
 
 @Service
 public class ChatClientService {
+    void setTaskExecutor(ThreadPoolTaskExecutor taskExecutor){
+        this.taskExecutor=taskExecutor;
+    }
     ThreadPoolTaskExecutor taskExecutor=new ThreadPoolTaskExecutor();
 @Async("aiTaskExecutor-player")
     public CompletableFuture<PlayerConsumerdto>generateaiasyncResponse(ChatMessage chatMessage) {

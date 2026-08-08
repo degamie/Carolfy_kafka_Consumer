@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ChatClientConfig
  {
+
      void setchatClient(ChatClient chatClient){
          this.chatClient=chatClient;
      }

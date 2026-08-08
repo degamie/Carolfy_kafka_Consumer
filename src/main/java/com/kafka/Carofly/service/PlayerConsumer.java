@@ -44,8 +44,11 @@ public class PlayerConsumer {
     }
 
     void setProps(Map<String,Object> props){this.props=props;}
-    public void setchatClient(ChatClient chatClient){this.chatClinet=chatClient;}
-    public ChatClient chatClinet;//Anthropic Ai Chat Client Obj declare
+    public void setchatClient(ChatClient chatClient){this.chatClient=chatClient;}
+    public ChatClient chatClient;//Anthropic Ai Chat Client Obj declare
+//    void  setchatClient(ChatClient chatClient){
+//
+//    }
     @Value("$spring.kafka.bootstrap-servers")
     public String bootstrapServers;
     public String PLAYER_TOPIC="PLAYER_TOPIC";//Player Topic declare
