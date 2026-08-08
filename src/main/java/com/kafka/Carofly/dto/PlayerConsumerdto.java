@@ -1,4 +1,4 @@
-//WID(31/7/2026(Sarthak Mittal(DegamieSign))
+//WID(8/8/2026(Sarthak Mittal(DegamieSign))(#PlayerCopnusmerdto)#1
 package com.kafka.Carofly.dto;
 
 import tools.jackson.databind.ObjectMapper;
@@ -7,6 +7,7 @@ import java.time.LocalTime;
 import java.util.Date;
 
 public class PlayerConsumerdto {
+    public float playerIdAsFloat;
     public Integer playerIdAsInt;
     private String playerId;
     private String playerName;
