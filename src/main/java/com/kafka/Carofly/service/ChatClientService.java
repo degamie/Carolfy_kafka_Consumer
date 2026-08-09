@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletableFuture;`
 
 @Service
 public class ChatClientService {
