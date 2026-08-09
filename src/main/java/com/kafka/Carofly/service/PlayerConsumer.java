@@ -62,6 +62,7 @@ public class PlayerConsumer {
     KafkaTemplate<String,Integer>kafkaTemplate;
     public PlayerConsumer playerconsumer;
 
+
     @Bean
     public ConsumerFactory<String,PlayerConsumerdto>consumerFactory(){
         JsonDeserializer<PlayerConsumerdto> deserializer = new JsonDeserializer<>(PlayerConsumerdto.class) {
