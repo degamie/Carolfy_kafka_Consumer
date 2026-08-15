@@ -1,4 +1,4 @@
-//WID(14/8/2026)(Sarthak Mittal(Degamiesign)
+//WID(15/8/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)
 package com.kafka.Carofly.service;
 
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -8,8 +8,10 @@ public class PlayerBroadCastService {
     public PlayerBroadCastService(SimpMessagingTemplate simpMessagingTemplate) {
         this.simpMessagingTemplate = simpMessagingTemplate;
     }
-
     SimpMessagingTemplate simpMessagingTemplate;
+    void setSimpMessagingTemplate(SimpMessagingTemplate simpMessagingTemplate){
+        this.simpMessagingTemplate=simpMessagingTemplate;
+    }
     public final SimpMessagingTemplate getSimpleMessageTemplate() {
         return simpMessagingTemplate;
     }
