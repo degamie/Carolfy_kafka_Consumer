@@ -1,6 +1,8 @@
 //WID(5/8/2026)(Sarthak Mittal)(DegamieSign)
 package com.kafka.Carofly.dto;
 
+import com.kafka.Carofly.service.PlayerConsumer;
+
 import java.text.DateFormat;
 
 public class ChatMessage {
@@ -27,9 +29,11 @@ public class ChatMessage {
         public void setSessionId(String sessionId) { this.sessionId = sessionId; }
 
         public String getMessage() { return message; }
-        public void setMessage(String message) { this.message = message; }
+        public String setMessage(String message) { this.message = message;
+            return message;
+        }
 
         public long getTimestamp() { return timestamp; }
         public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
     }
-}
+//}

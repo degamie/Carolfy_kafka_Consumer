@@ -7,19 +7,25 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.CompletableFuture;`
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class ChatClientService {
-    void setTaskExecutor(ThreadPoolTaskExecutor taskExecutor){
-        this.taskExecutor=taskExecutor;
+    void setTaskExecutor(ThreadPoolTaskExecutor taskExecutor) {
+        this.taskExecutor = taskExecutor;
     }
-    ThreadPoolTaskExecutor taskExecutor=new ThreadPoolTaskExecutor();
-@Async("aiTaskExecutor-player")
-    public CompletableFuture<PlayerConsumerdto>generateaiasyncResponse(ChatMessage chatMessage) {
-    String reply="AI Response(Async)"+chatMessage.getMessage();
+
+    ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+
+    @Async("aiTaskExecutor-player")
+    public ChatMessage generateaiasyncResponse(ChatMessage chatMessage) {
+        String reply = "AI Response(Async)" + chatMessage.getMessage();
+        return chatMessage;
+    }
 }
-}
+
+//}
+
 
 //    taskExecutor.setMaxPoolSize(150);
 //    taskExecutor.initialize();
