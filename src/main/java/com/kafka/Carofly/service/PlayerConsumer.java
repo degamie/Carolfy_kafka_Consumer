@@ -1,4 +1,4 @@
-//WID(17/08/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(playyer_ConsumerFactory)#1.1/1(Impl)
+//WID(19/08/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(playyer_ConsumerFactory)#1.1/1(Impl)
 package com.kafka.Carofly.service;
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.core.JacksonException;
@@ -71,34 +71,9 @@ public class PlayerConsumer {
     KafkaTemplate<String,Integer>kafkaTemplate;
     public PlayerConsumer playerconsumer;
 
-//
-//    @Bean
-//    public ConsumerFactory<String,PlayerConsumerdto>consumerFactory(){
-//        JsonDeserializer<PlayerConsumerdto> deserializer = new JsonDeserializer<DeserializationContext>(PlayerConsumerdto.class) {
-//            @Override
-//            public DeserializationContext deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
-//                return ctxt;
-//            }
-////            @Override
-////            public PlayerConsumerdto zdeserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JacksonException {
-////                return jsonParser+deserializationContext;
-////            }
-//        };
-////        deserializer.addTrustedPackages("*");
-////        deserializer.setUseTypeMapperForKey(true);
-//
-//
-//
-//        props.put(ConsumerConfig.GROUP_ID_CONFIG, "client-chat-ai-group");
-//        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-//        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer .class);
-//        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer .class);
-//        props.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer .class);
-//        props.put(TRUSTED_PACKAGES, "*");
-//
-////        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), deserializer);
-//        return props;
-//    }
+public void setPlayerBroadCastService(PlayerBroadCastService playerBroadCastService){
+    this.playerBroadCastService=playerBroadCastService;
+}
 
 public String setRecord(ProducerRecord<String, ChatMessage> record){
     return record.value().setMessage(playerconsumer.PLAYER_TOPIC);
