@@ -1,4 +1,4 @@
-//WID(19/08/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(playyer_ConsumerFactory)#1.1/1(Impl)
+//WID(20/08/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(playyer_ConsumerFactory)#1.1/1(Impl)
 package com.kafka.Carofly.service;
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.core.JacksonException;
@@ -39,6 +39,9 @@ import static org.springframework.kafka.support.serializer.JacksonJsonDeserializ
 @JsonIgnoreType
 
 public class PlayerConsumer {
+    public void updateByprompt(String prompt){
+        setprompt(prompt)+setprompt(prompt)+1;
+    }
     @Autowired
     PlayerBroadCastService playerBroadCastService;
     public String prompt;
