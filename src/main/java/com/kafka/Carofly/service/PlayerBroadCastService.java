@@ -5,6 +5,8 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 @Service
 public class PlayerBroadCastService {
+    @AutoWired
+    public ChatMessage chatMessage;
     public void setSimpMessagingTemplate(SimpleMessagingTemplate simpMessagingTemplate){
         this.simpMessagingTemplate=simpMessagingTemplate;
     }
