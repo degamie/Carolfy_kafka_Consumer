@@ -1,4 +1,4 @@
-//WID(23/8/2026)(Sarthak Mittal(DegamieSign(AsyncConfigLoader))
+//WID(27/8/2026)(Sarthak Mittal(DegamieSign(AsyncConfigLoader))#1
 package com.kafka.Carofly.config;
 
 import org.springframework.context.annotation.Configuration;
@@ -8,13 +8,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @Configuration
 @EnableAsync
 public class AsyncConfigLoader {
-    void setTaskExecutor(ThreadPoolTaskExecutor taskExecutor){this.taskExecutor=taskExecutor;}
-    AsyncConfigLoader getAsyncConfigLoader(AsyncConfigLoader asyncConfigLoader){
-        return asyncConfigLoader;
-    }
-     AsyncConfigLoader asyncConfigLoader;
-    void setAsyncConfigLoader(AsyncConfigLoader asyncConfigLoader){
-        this.asyncConfigLoader=asyncConfigLoader;
+    void setTaskExecutor(ThreadPoolTaskExecutor taskExecutor){
+        this.taskExecutor=taskExecutor;
     }
     AsyncConfigLoader(ThreadPoolTaskExecutor taskExecutor){
         this.taskExecutor=taskExecutor;
