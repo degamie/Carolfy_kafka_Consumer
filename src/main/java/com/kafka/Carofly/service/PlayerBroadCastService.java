@@ -1,21 +1,21 @@
-//WID(24/8/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)
+//WID(27c/8/2026)(Sarthak Mittal(Degamiesign)
 package com.kafka.Carofly.service;
 
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 @Service
 public class PlayerBroadCastService {
-    void setJwtUtil(JwtUtil jwtUtil){
-        this.jwtUtil=jwtUtil;
+    @AutoWired
+    public ChatMessage chatMessage;
+    void setChatMessage(ChatMessage chatMessage){this.chatMessage=chatMessage;}
+    public void setSimpMessagingTemplate(SimpleMessagingTemplate simpMessagingTemplate){
+        this.simpMessagingTemplate=simpMessagingTemplate;
     }
-    public JwtUtil jwtUtil;
     public PlayerBroadCastService(SimpMessagingTemplate simpMessagingTemplate) {
         this.simpMessagingTemplate = simpMessagingTemplate;
     }
+
     SimpMessagingTemplate simpMessagingTemplate;
-    void setSimpMessagingTemplate(SimpMessagingTemplate simpMessagingTemplate){
-        this.simpMessagingTemplate=simpMessagingTemplate;
-    }
     public final SimpMessagingTemplate getSimpleMessageTemplate() {
         return simpMessagingTemplate;
     }
