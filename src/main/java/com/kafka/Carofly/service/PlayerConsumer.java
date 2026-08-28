@@ -1,4 +1,4 @@
-//WID(26/08/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(playyer_ConsumerFactory)#1.1/1(Impl)#1
+//WID(28/08/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(playyer_ConsumerFactory)#1.1/1(Impl)#1.1
 package com.kafka.Carofly.service;
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -35,6 +35,9 @@ import static org.springframework.kafka.support.serializer.JacksonJsonDeserializ
 @JsonIgnoreType
 
 public class PlayerConsumer {
+    PlayerConsumer(String PLAYER_TOPIC){
+        this.PLAYER_TOPIC=PLAYER_TOPIC;
+    }
     @Autowired
     PlayerBroadCastService playerBroadCastService;
     void setPlayerBroadCastService(PlayerConsumer playerBroadCastService){
@@ -52,6 +55,12 @@ public class PlayerConsumer {
     public void setChatClinet(ChatClient chatClient){this.chatClinet=chatClient;}
     public  ChatMessage chatMessage;
     Map<String,Object> props=new HashMap<>();
+    private Object getProps(Map<String, Object> props) {return props;}
+    void updateByprops(Map<String,Object> props){
+        getProps(props)+setprops(props)+1;
+    }
+
+
 
     public KafkaTemplate<String, Integer> getKafkaTemplate() {
         return kafkaTemplate;
