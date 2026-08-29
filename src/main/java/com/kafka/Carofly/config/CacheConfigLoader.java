@@ -1,4 +1,4 @@
-//WID(27/8/2026)(Sarthak Mittal)(CacheConfigLoader)
+//WID(28/8/2026)(Sarthak Mittal)(CacheConfigLoader)#1
 package com.kafka.Carofly.config;
 
 import org.springframework.cache.annotation.EnableCaching;
@@ -9,8 +9,10 @@ import org.springframework.cache.caffeine.CaffeineCacheManager;
 @Configuration
 public class CacheConfigLoader{
     @Bean
-    public CaffieneCacheManager caffieneCacheManager(){
-        CaffeineCacheManager caffeineCacheManager=new CaffeineCacheManager();
+    public CaffeineCacheManager caffieneCacheManager(){
+        CaffeineCacheManager  caffeineCacheManager=new CaffeineCacheManager();
+        caffeineCacheManager.setCaffiene(caffeineCacheBuilder());
+        return caffeineCacheManager;
     }
 
 }
