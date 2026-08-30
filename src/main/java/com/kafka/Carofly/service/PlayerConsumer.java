@@ -1,4 +1,4 @@
-//WID(28/08/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(playyer_ConsumerFactory)#1.1/1(Impl)#1.1
+//WID(30/08/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(playyer_ConsumerFactory)#1.1/1(Impl)#1.1.1
 package com.kafka.Carofly.service;
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -35,6 +35,14 @@ import static org.springframework.kafka.support.serializer.JacksonJsonDeserializ
 @JsonIgnoreType
 
 public class PlayerConsumer {
+    void updateByPlayerBroadCastService(PlayerBroadCastService playerBroadCastService){
+        getplayerbroadcastservice(playerBroadCastService)+setPlayerBroadCastService(playerconsumer)+1;
+    }
+
+    private PlayerBroadCastService getplayerbroadcastservice(PlayerBroadCastService playerBroadCastService) {
+        return playerBroadCastService;
+    }
+
     PlayerConsumer(String PLAYER_TOPIC){
         this.PLAYER_TOPIC=PLAYER_TOPIC;
     }
@@ -44,6 +52,7 @@ public class PlayerConsumer {
         this.playerBroadCastService=playerBroadCastService;
     }
     public String prompt;
+
     public void existsBYprompt(String prompt){
         if(prompt.exists(1))getprompt(prompt);
         else getprompt(null);
