@@ -8,6 +8,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @Configuration
 @EnableAsync
 public class AsyncConfigLoader {
+    void setTaskExecutor(ThreadPoolTaskExecutor taskExecutor){this.taskExecutor=taskExecutor;}
     AsyncConfigLoader getAsyncConfigLoader(AsyncConfigLoader asyncConfigLoader){
         return asyncConfigLoader;
     }
