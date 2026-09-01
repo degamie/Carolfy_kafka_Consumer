@@ -1,134 +1,86 @@
-//WID(01/08/2026)(Sarthak Mittal(Carofly_kafka_Consumer_API)(Logic)(playyer_ConsumerFactory)#1.1/1(Impl).1
 package com.kafka.Carofly.service;
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
-import com.fasterxml.jackson.core.JacksonException;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.deser.std.StringDeserializer;
-import com.kafka.Carofly.dto.ChatMessage;
-import com.kafka.Carofly.dto.PlayerConsumerdto;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
+/
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.header.Header;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.Acknowledgment;
-import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
-import tools.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.springframework.kafka.support.serializer.JacksonJsonDeserializer.TRUSTED_PACKAGES;
 
 @Service
 @EnableKafka
 @EnableDiscoveryClient
-@JsonIgnoreType
-
 public class PlayerConsumer {
-    void setprops(String props){
-        this.props=props;
-    }
-    String getprops(String props){
-        return props;
-    }
-    void existsbyprompt(String prompt){
-        if(prompt.length()!=0)getPrompt(prompt);
-        else getPrompt(null);
-    }
-    private String getPrompt(String prompt) {
-        return prompt;
-    }
 
+    private static final Logger log = LoggerFactory.getLogger(PlayerConsumer.class);
 
+    private final PlayerBroadCastService playerBroadCastService;
+    private final ChatClient chatClient;
+    private final KafkaTemplate<String, Integer> kafkaTemplate;
 
+    @Value("${spring.kafka.bootstrap-servers:localhost:9092}")
+    private String bootstrapServers;
 
-    public void updateByprompt(String prompt){
-        setprompt(prompt)+setprompt(prompt)+1;
-    }
+    public static final String PLAYER_TOPIC = "PLAYER_TOPIC";
+
     @Autowired
-    PlayerBroadCastService playerBroadCastService;
-    public String prompt;
-    void setprompt(String prompt){this.prompt=prompt;}
-    void setprops(Map<String,Object> prop){this.props=prop;}
-    void setKafkaTemplate(KafkaTemplate<String,Integer>kafkaTemplate){this.kafkaTemplate=kafkaTemplate;}
-    public void setChatClinet(ChatClient chatClient){this.chatClient=chatClient;}
-    public  ChatMessage chatMessage;
-    Map<String,Object> props=new HashMap<>();
-
-    public KafkaTemplate<String, Integer> getKafkaTemplate() {
-        return kafkaTemplate;
+    public PlayerConsumer(PlayerBroadCastService playerBroadCastService,
+                          ChatClient chatClient,
+                          KafkaTemplate<String, Integer> kafkaTemplate) {
+        this.playerBroadCastService = playerBroadCastService;
+        this.chatClient = chatClient;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
-    void setProps(Map<String,Object> props){this.props=props;}
-    public void setchatClient(ChatClient chatClient){this.chatClient=chatClient;}
-    public ChatClient chatClient;//Anthropic Ai Chat Client Obj declare
-//    void  setchatClient(ChatClient chatClient){
-//
-//    }
-    @Value("$spring.kafka.bootstrap-servers")
-    public String bootstrapServers;
-    public String PLAYER_TOPIC="PLAYER_TOPIC";//Player Topic declare
-    void setPLAYER_TOPIC(String PLAYER_TOPIC){
-        this.PLAYER_TOPIC=PLAYER_TOPIC;
-    }
+    /**
+     * Listens to incoming player messages from Kafka.
+     *
+     * @param record The full ConsumerRecord containing headers and metadata.
+     * @param playerDto Parsed payload object (if Kafka deserializer is configured).
+     * @param authHeader Raw Authorization header value from Kafka headers.
+     * @param ack Acknowledgment handle for manual commits.
+     */
+    @KafkaListener(topics = "player-topics", groupId = "${spring.kafka.consumer.group-id}")
+    public void consume(
+            ConsumerRecord<String, PlayerConsumer> record,
+            @Payload PlayerConsumer playerDto,
+            @Header(name = "Authorization", required = false) byte[] authHeader,
+            Acknowledgment ack) {
 
-    public ObjectMapper objectMapper;
+        try {
+            // 1. Extract Authorization Header if available
+            String token = (authHeader != null) ? new String(authHeader, StandardCharsets.UTF_8) : null;
 
-    KafkaTemplate<String,Integer>kafkaTemplate;
-    public PlayerConsumer playerconsumer;
+            // 2. Process AI Prompt
+            String playerName = (playerDto != null && playerDto.getPlayerName() != null)
+                    ? playerDto.getPlayerName()
+                    : "Unknown Player";
 
-public void setPlayerBroadCastService(PlayerBroadCastService playerBroadCastService){
-    this.playerBroadCastService=playerBroadCastService;
-}
+            String prompt = "Processing player in the Game: " + playerName;
+            String response = chatClient.prompt(prompt).call().content();
 
-public String setRecord(ProducerRecord<String, ChatMessage> record){
-    return record.value().setMessage(playerconsumer.PLAYER_TOPIC);
-}
-public ProducerRecord<String, ChatMessage> record =
-        new ProducerRecord<>("client-chat-messages", chatMessage.getClientId(), chatMessage);
-    //Consuming Player messaage///
-    @KafkaListener (topics = "player-topics", groupId = "${spring.kafka.consumer.group-id}")//Kafka Topics and group id declare
-    public List<PlayerConsumerdto> consume(String msg, PlayerConsumerdto playerConsumerdto, ChatClient chatClient, Acknowledgment ack) throws Exception {//consume method declare
-        Header authHeader = record.headers().lastHeader("Authorization");
+            log.info("Received Kafka Message Key: {}, Value: {}", record.key(), record.value());
+            log.info("AI Response Generated: {}", response);
 
-        String prompt = "Processing player in the Game: " + playerConsumerdto.getPlayerName();
-        String response=chatClient.prompt(prompt).call().content();
-        System.out.println("Recieving Player Message from Kafka: {}" +msg +response);//Printing Recieved Player's
+            // 3. Acknowledge message consumption to Kafka
+            if (ack != null) {
+                ack.acknowledge();
+            }
 
-       // return playerConsumerdto.getPlayerId(msg)+playerConsumerdto.getPlayerName(playerConsumerdto.getPlayerName());//Priniting  fetched PlayerName in live game Server
-
-        String token=new String(authHeader.value(), StandardCharsets.UTF_8);
-        ChatMessage chatMessage=record.value();
-        ack.acknowledge();//Acknowledging Player's Message consumption
-        return List.of();
+        } catch (Exception e) {
+            log.error("Error processing Kafka message from topic {}: {}", record.topic(), e.getMessage(), e);
+            throw e;
+        }
     }
 }
-//    public PlayerConsumer(ChatClient chatClinet, String PLAYER_TOPIC, ObjectMapper objectMapper, KafkaTemplate<String, Integer> kafkaTemplate, PlayerConsumer playerconsumer) {
-//        this.chatClinet = chatClinet;
-//        this.PLAYER_TOPIC = PLAYER_TOPIC;
-//        this.objectMapper = objectMapper;
-//        this.kafkaTemplate = kafkaTemplate;
-//        this.playerconsumer = playerconsumer;
-//    }
-
-//        this.logger = logger;
-
-    // PlayerConsumerdto playerConsumerdto;//playerConsumer entity obj declare
-//    @Bean
-//    public Logger logger= LoggerFactory.getLogger(PlayerConsumer.class);//Logger obj declare
-
-//    private final PlayerConsumerdto playerConsumerdto;

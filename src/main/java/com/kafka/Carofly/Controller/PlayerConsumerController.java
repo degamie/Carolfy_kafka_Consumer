@@ -1,8 +1,8 @@
 //WID(9/8/2026)(Sarthak Mittal(DegamieSign(PlayerConsumerCntrller(Param_Constr))
 package com.kafka.Carofly.Controller;
 
-import com.kafka.Carofly.dto.PlayerConsumerdto;
-import com.kafka.Carofly.service.PlayerConsumer;
+//import com.kafka.Carofly.dto.PlayerConsumerdto;
+//import com.kafka.Carofly.service.PlayerConsumer;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.EnableCaching;
@@ -19,7 +19,7 @@ import java.util.List;
 
 public class PlayerConsumerController {
     @Autowired
-    public PlayerConsumer playerConsumer;
+    public PlayerConsumerService playerConsumer;
     PlayerConsumerController(PlayerConsumer playerConsumer){
         this.playerConsumer=playerConsumer;
     }

@@ -1,7 +1,9 @@
-//WID(31/8/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)#1/1
+//WID(01/9/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)#1/1.1
 package com.kafka.Carofly.service;
 
+import com.kafka.Carofly.config.JwtUtil;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 @Service
 public class PlayerBroadCastService {
@@ -16,21 +18,13 @@ public class PlayerBroadCastService {
     private PlayerBroadCastService getplayerbroadcastservice(PlayerBroadCastService playerBroadCastService) {
         return playerBroadCastService;
     }
-
-
-
-
-
-
+    @Async("consumer-player-async")
     void updateByjwtUtil(JwtUtil jwtUtil){
         getjwtUtil(jwtUtil)+setJwtUtil(jwtUtil)+1;
     }
     private JwtUtil getjwtUtil(JwtUtil jwtUtil) {
         return jwtUtil;
     }
-
-
-
     void setJwtUtil(JwtUtil jwtUtil){
         this.jwtUtil=jwtUtil;
     }
