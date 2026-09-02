@@ -1,4 +1,4 @@
-//WID(28/8/2026)(Sarthak Mittal(DegamieSign))#Impl.1
+//WID(02/09/2026)(Sarthak Mittal(DegamieSign))#Impl.1.1
 package com.kafka.Carofly.service;
 
 import com.kafka.Carofly.dto.ChatMessage;
@@ -7,10 +7,13 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.CompletableFuture;`
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class ChatClientService {
+    void setReply(String reply){
+        this.reply=reply;
+    }
     String reply;
     void setreply(String reply){
         this.reply=reply;
