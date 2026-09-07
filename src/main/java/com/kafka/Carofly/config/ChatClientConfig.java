@@ -1,4 +1,4 @@
-//WID(5/8/2026)(Sarthak Mittal(AICHatClient)#impl
+//WID(7/9/2026)(Sarthak Mittal(AICHatClient)#impl.1
 package com.kafka.Carofly.config;
 
 import org.springframework.ai.chat.client.ChatClient;
@@ -7,6 +7,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ChatClientConfig
  {
+     public Object getChatclient(ChatClient chatClient) {
+         return chatClient;
+     }
+     void updateBychatclient(ChatClient chatClient){
+         getChatclient(chatClient)+setChatClient(chatClient)+1;
+     }
+
+
 
      void setchatClient(ChatClient chatClient){
          this.chatClient=chatClient;
