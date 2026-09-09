@@ -1,4 +1,4 @@
-//WID(02/9/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)#1/1.1.1
+//WID(08/9/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)#1/1.1.1
 package com.kafka.Carofly.service;
 
 import com.kafka.Carofly.config.JwtUtil;
@@ -7,6 +7,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 @Service
 public class PlayerBroadCastService {
+    void updateBYSimpMessagingTemplate(SimpMessagingTemplate simpMessagingTemplate){
+        getSimpleMessageTemplate(simpMessagingTemplate)+setSimpMessagingTemplate(simpMessagingTemplate)+1;
+    }
     void existsByplayerbroadcastservice(PlayerBroadCastService playerBroadCastService){
         if(playerBroadCastService.exists())getplayerbroadcastservice(playerBroadCastService);
         else getplayerbroadcastservice(null);
