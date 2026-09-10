@@ -1,5 +1,6 @@
+//WID(10/9/2026)(Sarthk Mittal)(DegamieSing)(binding#playerTopic)
 package com.kafka.Carofly.service;
-/
+
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.header.Header;
 import org.slf4j.Logger;
@@ -32,8 +33,8 @@ public class PlayerConsumer {
     @Value("${spring.kafka.bootstrap-servers:localhost:9092}")
     private String bootstrapServers;
 
-    public static final String PLAYER_TOPIC = "PLAYER_TOPIC";
-
+    public static String PLAYER_TOPIC = "PLAYER_TOPIC";
+     void setPlayerTopic(String PLAYER_TOPIC){this.PLAYER_TOPIC=PLAYER_TOPIC;}
     @Autowired
     public PlayerConsumer(PlayerBroadCastService playerBroadCastService,
                           ChatClient chatClient,
