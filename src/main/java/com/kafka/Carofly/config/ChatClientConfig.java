@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ChatClientConfig
  {
+     private  ChatClient chatClient;
      void existsBychatClient(ChatClient chatClient){
          if(chatClient.equals()!=null)getChatclient(chatClient);
          else getChatclient(null);
@@ -23,7 +24,7 @@ public class ChatClientConfig
      void setchatClient(ChatClient chatClient){
          this.chatClient=chatClient;
      }
-     private  ChatClient chatClient;
+
 public void setChatClient(ChatClient  chatClient){
     this.chatClient=chatClient;
 }
