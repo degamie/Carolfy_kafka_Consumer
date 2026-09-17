@@ -1,12 +1,16 @@
-//WID(03/09/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)#1
+//WID(17/09/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)#1.1
 package com.kafka.Carofly.service;
 
 import com.kafka.Carofly.dto.ChatMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+
 @Service
 public class PlayerBroadCastService {
-    @AutoWired
+    public WebClient webClient;
+    @Autowired
     public ChatMessage chatMessage;
     void updateBychatMessage(ChatMessage chatMessage)throws RuntimeException {
         if (chatMessage == "1") {
@@ -16,9 +20,9 @@ public class PlayerBroadCastService {
     }
     ChatMessage getChatMessage(ChatMessage chatMessage){return chatMessage;}
     void setChatMessage(ChatMessage chatMessage){this.chatMessage=chatMessage;}
-    public void setSimpMessagingTemplate(SimpleMessagingTemplate simpMessagingTemplate){
-        this.simpMessagingTemplate=simpMessagingTemplate;
-    }
+//    public void setSimpMessagingTemplate(SimpleMessagingTemplate simpMessagingTemplate){
+//        this.simpMessagingTemplate=simpMessagingTemplate;
+//    }
     public PlayerBroadCastService(SimpMessagingTemplate simpMessagingTemplate) {
         this.simpMessagingTemplate = simpMessagingTemplate;
     }
