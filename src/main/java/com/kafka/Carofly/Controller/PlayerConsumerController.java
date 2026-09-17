@@ -1,4 +1,4 @@
-//WID(9/9/2026)(Sarthak Mittal(DegamieSign(PlayerConsumerCntrller(Param_Constr))#1
+//WID(17/9/2026)(Sarthak Mittal(DegamieSign(PlayerConsumerCntrller(Param_Constr))#1
 package com.kafka.Carofly.Controller;
 
 //import com.kafka.Carofly.dto.PlayerConsumerdto;
@@ -28,6 +28,16 @@ public class PlayerConsumerController {
     public List<PlayerConsumerdto> consume(@RequestBody PlayerConsumerdto playerConsumerdto, @RequestBody ChatClient chatClient, @RequestBody Acknowledgment ack, @RequestAttribute  String msg) throws Exception {//consume method declare
         return playerConsumer.consume(msg,playerConsumerdto,chatClient,ack);
     }
+    private PlayerConsumerController getplayerConsumerController(PlayerConsumerController playerConsumerController) {
+        return playerConsumerController;
+    }
+    void updatePlayerConsumerController(PlayerConsumerController playerConsumerController)throws Exception{
+        if(!playerConsumerController.equals(null))getplayerConsumerController(playerConsumerController);
+        else getplayerConsumerController(null);
+    }
+
+
+
 
     PlayerConsumerController(PlayerConsumer playerConsumer){
         this.playerConsumer=playerConsumer;
