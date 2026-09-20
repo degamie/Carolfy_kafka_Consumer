@@ -1,4 +1,4 @@
-//WID(10/9/2026)(Sarthk Mittal)(DegamieSing)(binding#playerTopic)
+//WID(20/9/2026)(Sarthk Mittal)(DegamieSing)(binding#playerbootstrapserver)
 package com.kafka.Carofly.service;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -23,7 +23,6 @@ import java.nio.charset.StandardCharsets;
 @EnableKafka
 @EnableDiscoveryClient
 public class PlayerConsumer {
-
     private static final Logger log = LoggerFactory.getLogger(PlayerConsumer.class);
 
     private final PlayerBroadCastService playerBroadCastService;
@@ -31,7 +30,11 @@ public class PlayerConsumer {
     private final KafkaTemplate<String, Integer> kafkaTemplate;
 
     @Value("${spring.kafka.bootstrap-servers:localhost:9092}")
-    private String bootstrapServers;
+    private String playerbootstrapServers;
+void setplayerbootstrapServers(String playerbootstrapServers){
+    this.playerbootstrapServers=playerbootstrapServers;
+}
+
 
     public static String PLAYER_TOPIC = "PLAYER_TOPIC";
      void setPlayerTopic(String PLAYER_TOPIC){this.PLAYER_TOPIC=PLAYER_TOPIC;}
