@@ -1,4 +1,4 @@
-//WID(8/9/2026)(Sarthak Mittal(DegamieSign))(Binding ConsumerFactory)#1
+//WID(20/9/2026)(Sarthak Mittal(DegamieSign))(Binding ConsumerFactory)#1.1
 package com.kafka.Carofly.service;
 
 import org.apache.kafka.clients.consumer.Consumer;
@@ -16,6 +16,9 @@ import java.util.List;
 
 @Service
 public class KafkaTopicPager {
+    void setConsumerfactlisteneer(ConsumerFactory.Listener<> consumerfactlisteneer){
+        this.consumerfactlisteneer= (ConsumerFactory.Listener) consumerFactory;
+    }
     ConsumerFactory.Listener<> consumerfactlisteneer=new ConsumerFactory.Listener() {
         @Override
         public void consumerAdded(String id, Consumer consumer) {
