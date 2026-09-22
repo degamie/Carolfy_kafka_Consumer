@@ -1,4 +1,4 @@
-//WID(17/09/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)#1.1
+//WID(22/09/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)#1.1.1
 package com.kafka.Carofly.service;
 
 import com.kafka.Carofly.dto.ChatMessage;
@@ -12,6 +12,9 @@ public class PlayerBroadCastService {
     public WebClient webClient;
     @Autowired
     public ChatMessage chatMessage;
+    void setWebClient(WebClient webClient){
+        this.webClient=webClient;
+    }
     void updateBychatMessage(ChatMessage chatMessage)throws RuntimeException {
         if (chatMessage == "1") {
             getChatMessage(chatMessage) + setChatMessage(chatMessage) + 1;
