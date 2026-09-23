@@ -1,4 +1,4 @@
-//WID(20/9/2026)(Sarthak Mittal(DegamieSign)(beladona(authenticatioN)
+//WID(23/9/2026)(Sarthak Mittal(DegamieSign)(beladona(authenticatioN)#1
 package com.kafka.Carofly.config;
 
 import org.apache.kafka.clients.CommonClientConfigs;
@@ -9,6 +9,9 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import java.util.Properties;
 
 public class beladona {
+    Properties getproperties(Properties properties){
+        return properies;
+    }
     void setproperties(Properties properties){
         this.properties=properties;
     }
