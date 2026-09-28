@@ -1,0 +1,34 @@
+//WID(02/09/2026)(Sarthak Mittal(DegamieSign))#Impl.1.1
+package com.kafka.Carofly.service;
+
+import com.kafka.Carofly.dto.ChatMessage;
+import com.kafka.Carofly.dto.PlayerConsumerdto;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.concurrent.CompletableFuture;
+@Transactional(readOnly = true)
+@Service
+public class ChatClientService {
+    void setReply(String reply){
+        this.reply=reply;
+    }
+    String reply;
+    void setreply(String reply){
+        this.reply=reply;
+    }
+    void setTaskExecutor(ThreadPoolTaskExecutor taskExecutor){
+        this.taskExecutor=taskExecutor;
+    }
+    ThreadPoolTaskExecutor taskExecutor=new ThreadPoolTaskExecutor();
+@Async("aiTaskExecutor-player")
+    public String generateaiasyncResponse(ChatMessage chatMessage) {
+    String reply="AI Response(Async)"+chatMessage.getMessage();
+    return reply;
+}
+}
+
+//    taskExecutor.setMaxPoolSize(150);
+//    taskExecutor.initialize();
