@@ -1,4 +1,4 @@
-//WID(25/9/2026)(Satthak Mittal)(DegamieSign)#PlayerEventRecord#impl/1
+//WID(05/10/2026)(Satthak Mittal)(DegamieSign)#PlayerEventRecord#(binding#playerId)
 package com.kafka.Carofly.dto;
 
 import jakarta.persistence.*;
@@ -15,7 +15,10 @@ public class PlayerEventRecord {
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long playerid;
+    void setplayerid(Long playerid){
+        this.playerid=playerid;
+    }
     private String key;
     private String payload;
     public void setplayerpayloadnumber(float playerpayloadnumber){
