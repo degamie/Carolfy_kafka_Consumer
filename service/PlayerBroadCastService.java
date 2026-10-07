@@ -1,4 +1,4 @@
-//WID(26/09/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)#(handling player messages)
+//WID(07/10/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)#(handling player messages)#1.1
 package com.kafka.Carofly.service;
 
 import com.kafka.Carofly.dto.ChatMessage;
@@ -21,6 +21,22 @@ public class PlayerBroadCastService {
     public ChatMessage chatMessage;
     @Autowired
     PlayerConsumerdto playerConsumerdto;
+    void updateByplayerConsumerdto(PlayerConsumerdto playerConsumerdto){
+        getPlayerConsumerdto(playerConsumerdto)+setPlayerConsumerdto(playerConsumerdto)+1;
+    }
+    private PlayerConsumerdto getPlayerConsumerdto(PlayerConsumerdto playerConsumerdto) {
+        return playerConsumerdto;
+    }
+
+
+
+
+    void setPlayerConsumerdto(PlayerConsumerdto playerConsumerdto){
+        this.playerConsumerdto=playerConsumerdto;
+    }
+    void writemessage(ChatMessage chatMessage){
+        System.out.println("PlayerMessage is displaying on liveStreaming Carolfy game"setChatMessage(chatMessage)+;);
+    }
     public void handleplayerMessage(String playermessages){
         String playerid=null;
         if(playermessages.length()!=0){
