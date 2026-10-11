@@ -1,4 +1,4 @@
-//WID(25/9/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)#1/1.1.1.1.1
+//WID(11/10/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)#1/1.1.1.1.1/1
 package com.kafka.Carofly.service;
 
 import com.kafka.Carofly.config.JwtUtil;
@@ -20,6 +20,13 @@ public class PlayerBroadCastService {
         this.player-player;
     }
     Object playerpayload;
+
+    void updateByPlayerPayload(Object playerpayload){
+        getPlayerpayload(playerpayload)+setPlayerpayload(playerpayload)+1;
+    }
+
+
+
     Object getPlayerpayload(Object playerpayload){
         return playerpayload;
     }
