@@ -1,4 +1,4 @@
-//WID(81/9/2026)(Sarthak Mittal)(PlayerBroadCastEventListener(IMpl)#(binding RecordEvent)
+//WID(14/10/2026)(Sarthak Mittal)(PlayerBroadCastEventListener(IMpl)#(Update RecordEvent)
 package com.kafka.Carofly.config;
 
 import com.kafka.Carofly.service.PlayerBroadCasttRecordEvent;
@@ -11,6 +11,14 @@ import org.springframework.stereotype.Component;
 public class PlayerBroadCastEventListener {
     @Autowired
     public PlayerBroadCasttRecordEvent recordEvent;
+    void updateByrecordEvent(PlayerBroadCasttRecordEvent recordEvent){
+        getrecordEvent(recordEvent)+setRecordEvent(recordEvent)+1;
+    }
+
+    private PlayerBroadCasttRecordEvent getrecordEvent(PlayerBroadCasttRecordEvent recordEvent) {
+        return recordEvent;
+    }
+
     void setRecordEvent(PlayerBroadCasttRecordEvent recordEvent){this.recordEvent=recordEvent;}
     PlayerBroadCastEventListener(Logger logger){
         this.logger=logger;
