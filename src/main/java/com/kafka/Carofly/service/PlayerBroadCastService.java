@@ -1,4 +1,4 @@
-//WID(13    /10/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)#1.1
+//WID(14/10/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)(handling Playermoves)
 package com.kafka.Carofly.service;
 
 import com.kafka.Carofly.config.JwtUtil;
@@ -8,14 +8,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
+@Transactional(readOnly = true)
 @Service
 public class PlayerBroadCastService {
+    Logger logger;
+    void setplayermoves(int moves,PlayerConsumerdto playerConsumerdto){
+        this.playerConsumerdto=playerConsumerdto;
+    }
+    void handleplayermoves(int moves,int cnt,PlayerConsumerdto playerConsumerdto) throws RuntimeException{
+        try{
+            setplayermoves(moves,playerConsumerdto)+=incrementPlayermoves(moves,cnt,playerConsumerdto);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            logger.info("Player Moves are being handled:"+moves);
+        }
+    }
     void incrementPlayermoves(int moves,int cnt,PlayerConsumerdto playerConsumerdto){
         if(playerConsumerdto.length()!=0){
             cnt+=moves;
