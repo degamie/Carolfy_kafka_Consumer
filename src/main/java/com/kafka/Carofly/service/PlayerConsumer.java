@@ -1,11 +1,14 @@
 //WID(20/9/2026)(Sarthk Mittal)(DegamieSing)(binding#playerbootstrapserver)
 package com.kafka.Carofly.service;
 
+import com.kafka.Carofly.dto.PlayerConsumerdto;
+import com.kafka.Carofly.repository.PlayerRepository;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.header.Header;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -18,11 +21,17 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @Service
 @EnableKafka
 @EnableDiscoveryClient
 public class PlayerConsumer {
+
+    @Autowired
+    PlayerConsumerdto playerConsumerdto;
+    public PlayerRepository playerRepository;
+    ResponseEntity responseEntity;
     private static final Logger log = LoggerFactory.getLogger(PlayerConsumer.class);
 
     private final PlayerBroadCastService playerBroadCastService;
@@ -85,6 +94,14 @@ void setplayerbootstrapServers(String playerbootstrapServers){
         } catch (Exception e) {
             log.error("Error processing Kafka message from topic {}: {}", record.topic(), e.getMessage(), e);
             throw e;
+        }
+    }
+    public void sendplayerid(String playerId) {
+        while (playerId.length() > 0) {
+            if (playerId != null) {
+                playerId += playerConsumerdto.getPlayerName(playerConsumerdto.playerName);
+            }
+            System.out.println("PlayerId are sent by producer to the consumer" + playerRepository.savebyplayerid(playerId));
         }
     }
 }

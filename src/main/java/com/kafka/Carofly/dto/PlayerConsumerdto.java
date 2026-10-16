@@ -1,12 +1,20 @@
 //WID(14/8/2026(Sarthak Mittal(DegamieSign))(#PlayerCopnusmerdto)#1.1
 package com.kafka.Carofly.dto;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import tools.jackson.databind.ObjectMapper;
 
 import java.time.LocalTime;
 import java.util.Date;
 
+@Entity
 public class PlayerConsumerdto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String playerId;
     float getPlayerIdAsFloat(float playerIdAsFloat){return playerIdAsFloat;}
 
     void setplayerIdAsFloat(float playerIdAsFloat){
@@ -14,8 +22,8 @@ public class PlayerConsumerdto {
     }
     public float playerIdAsFloat;
     public Integer playerIdAsInt;
-    private String playerId;
-    private String playerName;
+
+    public String playerName;
     private int score;
     private int playerSpeed;
     private Integer playerSpeedAccuracy;
@@ -62,8 +70,8 @@ public class PlayerConsumerdto {
         this.playerId = playerId;
     }
 
-    public String getPlayerName() {
-        return playerName;
+    public String getPlayerName(String playerName) {
+        return this.playerName;
     }
 
     public void setPlayerName(String playerName) {

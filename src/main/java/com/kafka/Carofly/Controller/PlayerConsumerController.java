@@ -1,11 +1,13 @@
-//WID(17/9/2026)(Sarthak Mittal(DegamieSign(PlayerConsumerCntrller(Param_Constr))#1
+//WID(16/10/2026)(Sarthak Mittal(DegamieSign(PlayerConsumerCntrller(Param_Constr))#1
 package com.kafka.Carofly.Controller;
 
 //import com.kafka.Carofly.dto.PlayerConsumerdto;
 //import com.kafka.Carofly.service.PlayerConsumer;
 import com.kafka.Carofly.dto.PlayerConsumerdto;
+import com.kafka.Carofly.service.PlayerBroadCastService;
 import com.kafka.Carofly.service.PlayerConsumer;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
@@ -22,7 +24,13 @@ import java.util.List;
 
 public class PlayerConsumerController {
     @Autowired
-    public PlayerConsumerService playerConsumer;
+    public PlayerConsumer playerConsumer;
+    @Autowired
+    public PlayerBroadCastService playerBroadCastService;
+    @PostMapping("/playerid")
+    public void sendplayerid(String playerId){
+        playerConsumer.sendplayerid(playerId);
+    }
     @Cacheable("/player-message")
     @GetMapping("/message")
     public List<PlayerConsumerdto> consume(@RequestBody PlayerConsumerdto playerConsumerdto, @RequestBody ChatClient chatClient, @RequestBody Acknowledgment ack, @RequestAttribute  String msg) throws Exception {//consume method declare
