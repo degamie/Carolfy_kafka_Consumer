@@ -1,4 +1,4 @@
-//WID(20/9/2026)(Sarthk Mittal)(DegamieSing)(binding#playerbootstrapserver)
+//WID(18/10/2026)(Sarthk Mittal)(DegamieSing)(updating#playertopic)
 package com.kafka.Carofly.service;
 
 import com.kafka.Carofly.dto.PlayerConsumerdto;
@@ -44,9 +44,18 @@ void setplayerbootstrapServers(String playerbootstrapServers){
     this.playerbootstrapServers=playerbootstrapServers;
 }
 
-
     public static String PLAYER_TOPIC = "PLAYER_TOPIC";
-     void setPlayerTopic(String PLAYER_TOPIC){this.PLAYER_TOPIC=PLAYER_TOPIC;}
+    void updateByplayerTopic(String PLAYER_TOPIC){
+        getplayertopic(PLAYER_TOPIC)+setPlayerTopic(PLAYER_TOPIC)+1;
+    }
+    private String getplayertopic(String playerTopic) {
+        return playerTopic;
+    }
+
+
+
+
+    void setPlayerTopic(String PLAYER_TOPIC){this.PLAYER_TOPIC=PLAYER_TOPIC;}
     @Autowired
     public PlayerConsumer(PlayerBroadCastService playerBroadCastService,
                           ChatClient chatClient,
