@@ -5,6 +5,8 @@ import javax.crypto.SecretKey;
 
 import org.springframework.context.annotation.Configuration;
 
+import java.security.Key;
+
 @Configuration
 public class JwtUtil {
    private static final String SECRETKEY = "nZv7vIGZ6n/LzZhNCUYFQtcVyxZu+1JKiTQI7P6qPUk=";
@@ -12,6 +14,6 @@ public class JwtUtil {
     void setJwtUtil(JwtUtil jwtUtil){this.jwtUtil=jwtUtil;}
     private Key getSigningKey(){
         Byte[] byteskey=Decoders.BASE64.decode(SECRETKEY);
-        return Keys.hmacShaKeyFor(byteskey);
+        return Key.hmacShaKeyFor(byteskey);
     }
 }
