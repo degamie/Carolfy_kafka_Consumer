@@ -1,4 +1,4 @@
-//WID(18/10/2026)(Sarthk Mittal)(DegamieSing)(updating#playertopic)
+//WID(20/10/2026)(Sarthk Mittal)(DegamieSing)(Fetching#playerscore)
 package com.kafka.Carofly.service;
 
 import com.kafka.Carofly.dto.PlayerConsumerdto;
@@ -37,6 +37,9 @@ public class PlayerConsumer {
     private final PlayerBroadCastService playerBroadCastService;
     private final ChatClient chatClient;
     private final KafkaTemplate<String, Integer> kafkaTemplate;
+    List<String>getplayerscore(int playerscore){
+        return playerRepository.findByplayerscore(playerscore);
+    }
 
     @Value("${spring.kafka.bootstrap-servers:localhost:9092}")
     private String playerbootstrapServers;
