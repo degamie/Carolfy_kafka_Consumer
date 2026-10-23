@@ -1,4 +1,4 @@
-//WID(20/10/2026)(Sarthk Mittal)(DegamieSing)(Fetching#playerscore)
+//WID(23/10/2026)(Sarthk Mittal)(DegamieSing)(Checking#playerTopic Exsitence)
 package com.kafka.Carofly.service;
 
 import com.kafka.Carofly.dto.PlayerConsumerdto;
@@ -48,6 +48,10 @@ void setplayerbootstrapServers(String playerbootstrapServers){
 }
 
     public static String PLAYER_TOPIC = "PLAYER_TOPIC";
+void existsByplayertopic(String PLAYER_TOPIC){
+    if(PLAYER_TOPIC.length()!=0)getplayertopic(PLAYER_TOPIC);
+    else getplayertopic(null);
+}
     void updateByplayerTopic(String PLAYER_TOPIC){
         getplayertopic(PLAYER_TOPIC)+setPlayerTopic(PLAYER_TOPIC)+1;
     }
