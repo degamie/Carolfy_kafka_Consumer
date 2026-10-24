@@ -1,4 +1,4 @@
-//WID(22/10/2026)(Sarthak Mittal)(DegamieSign)(fetching playerspeed)
+//WID(24/10/2026)(Sarthak Mittal)(DegamieSign)(Saving playerscore)
 package com.kafka.Carofly.repository;
 
 import com.kafka.Carofly.dto.PlayerConsumerdto;
@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface PlayerRepository extends JpaRepository<String, PlayerConsumerdto>{
+    List<String>savebyplayerscore(int playerscore);
     List<String>findByplayerspeed(int playerspeed);
     List<String>findByplayerSpeedAccuracy(int playerspeedaccuracy);
     List<String>findByplayerCreatedDate(Date playercreatedDate);
