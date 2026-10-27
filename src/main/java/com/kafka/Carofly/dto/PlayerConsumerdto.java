@@ -1,4 +1,4 @@
-//WID(14/8/2026(Sarthak Mittal(DegamieSign))(#PlayerCopnusmerdto)#1.1
+//WID(27/10/2026(Sarthak Mittal(DegamieSign))(#PlayerCopnusmerdto)#1.1.1
 package com.kafka.Carofly.dto;
 
 import jakarta.persistence.Entity;
@@ -15,6 +15,7 @@ public class PlayerConsumerdto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String playerId;
+    public int playercntval;
     float getPlayerIdAsFloat(float playerIdAsFloat){return playerIdAsFloat;}
 
     void setplayerIdAsFloat(float playerIdAsFloat){
