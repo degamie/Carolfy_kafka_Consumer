@@ -10,7 +10,8 @@ import java.util.List;
 
 @Repository
 public interface PlayerRepository extends JpaRepository<String, PlayerConsumerdto>{
-    List<String>findbyplayerIdAsfloat(float playeridasfloat);
+
+    List<Float>findbyplayerIdAsfloat(float playeridasfloat);
     List<String>findbyplayerModifiedDate(Date playermodifiedDate);
     List<String>savebyplayerscore(int playerscore);
     List<String>findByplayerspeed(int playerspeed);

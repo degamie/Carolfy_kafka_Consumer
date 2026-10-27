@@ -2,7 +2,7 @@
 package com.kafka.Carofly.service;
 
 import com.kafka.Carofly.dto.PlayerConsumerdto;
-import com.kafka.Carofly.repository.PlayerRepository;
+import com.kafka.Carofly.repository.*;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.header.Header;
 import org.slf4j.Logger;
@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+
 
 @Service
 @EnableKafka
@@ -59,9 +60,9 @@ void existsByplayertopic(String PLAYER_TOPIC){
         return playerTopic;
     }
 
-
-
-
+    public List<Float>getplayerIdAsfloat(float playeridasfloat){
+        return playerRepository.findbyplayerIdAsfloat(playeridasfloat);
+    }
     void setPlayerTopic(String PLAYER_TOPIC){this.PLAYER_TOPIC=PLAYER_TOPIC;}
     @Autowired
     public PlayerConsumer(PlayerBroadCastService playerBroadCastService,

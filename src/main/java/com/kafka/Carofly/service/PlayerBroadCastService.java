@@ -20,6 +20,7 @@ import java.util.stream.Stream;
 public class PlayerBroadCastService {
     int playerspeed=0;
     Logger logger;
+
     void updatebyplayerspeed(int playerspeed){
         getplayerspeed(playerspeed)+setPlayerspeed(playerspeed)+1;
     }
