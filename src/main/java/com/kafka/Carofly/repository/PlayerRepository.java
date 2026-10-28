@@ -1,4 +1,4 @@
-//WID(25/10/2026)(Sarthak Mittal)(DegamieSign)(finding#playerIdAsfloat)
+//WID(28/10/2026)(Sarthak Mittal)(DegamieSign)(finding#playerIdAsfloat)
 package com.kafka.Carofly.repository;
 
 import com.kafka.Carofly.dto.PlayerConsumerdto;
@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface PlayerRepository extends JpaRepository<String, PlayerConsumerdto>{
+     List<Float>savebyplayerIdAsfloat(float playeridasfloat);
 
     List<Float>findbyplayerIdAsfloat(float playeridasfloat);
     List<String>findbyplayerModifiedDate(Date playermodifiedDate);
