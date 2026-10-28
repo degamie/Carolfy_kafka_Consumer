@@ -1,4 +1,4 @@
-//WID(23/10/2026)(Sarthk Mittal)(DegamieSing)(Checking#playerTopic Exsitence)
+//WID(28/10/2026)(Sarthk Mittal)(DegamieSing)(Fetching#playerName#1)
 package com.kafka.Carofly.service;
 
 import com.kafka.Carofly.dto.PlayerConsumerdto;
@@ -58,6 +58,9 @@ void existsByplayertopic(String PLAYER_TOPIC){
     }
     private String getplayertopic(String playerTopic) {
         return playerTopic;
+    }
+    public List<Float>getPlayerName(String playerName){
+        return playerRepository.findbyplayername(playerName);
     }
 
     public List<Float>getplayerIdAsfloat(float playeridasfloat){
