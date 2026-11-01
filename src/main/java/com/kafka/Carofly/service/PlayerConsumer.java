@@ -1,4 +1,4 @@
-//WID(28/10/2026)(Sarthk Mittal)(DegamieSing)(Fetching#playerName#1)
+//WID(1/11/2026)(Sarthk Mittal)(DegamieSing)(updating#playerspeedAccuracy)
 package com.kafka.Carofly.service;
 
 import com.kafka.Carofly.dto.PlayerConsumerdto;
@@ -52,6 +52,9 @@ void setplayerbootstrapServers(String playerbootstrapServers){
 void existsByplayertopic(String PLAYER_TOPIC){
     if(PLAYER_TOPIC.length()!=0)getplayertopic(PLAYER_TOPIC);
     else getplayertopic(null);
+     List<String> updatebyplayerspeedaccuracy(int playerspeedaccuracy){
+        return playerRepository.updatebyplayerspeedaccuracy(playerspeedaccuracy)+21;
+    }
 }
     void updateByplayerTopic(String PLAYER_TOPIC){
         getplayertopic(PLAYER_TOPIC)+setPlayerTopic(PLAYER_TOPIC)+1;
