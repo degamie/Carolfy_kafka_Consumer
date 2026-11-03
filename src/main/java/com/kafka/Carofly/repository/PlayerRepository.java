@@ -1,4 +1,4 @@
-//WID(30/10/2026)(Sarthak Mittal)(DegamieSign)(Saving#playerSpeedAsAccuracy)
+//WID(3/11/2026)(Sarthak Mittal)(DegamieSign)(Checking#playerSpeedAsAccuracy#existence)
 package com.kafka.Carofly.repository;
 
 import com.kafka.Carofly.dto.PlayerConsumerdto;
@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface PlayerRepository extends JpaRepository<String, PlayerConsumerdto>{
+    List<String>existsbyplayerspeedaccuracy(int playerspeedaccuracy);
 List<String>updatebyplayerspeedaccuracy(int playerspeedaccuracy);
     List<String>savebyplayerspeedaccuracy(int playerspeedaccuracy);
      List<Float>savebyplayerIdAsfloat(float playeridasfloat);
