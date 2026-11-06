@@ -1,4 +1,4 @@
-//WID(24/10/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)(handling Playermoves)
+//WID(4/11/2026)(Sarthak Mittal(Degamiesign)(PlayerBroadCastService)(Checking#PlayerSpeed)#1
 package com.kafka.Carofly.service;
 
 import com.kafka.Carofly.config.JwtUtil;
@@ -19,6 +19,10 @@ import java.util.stream.Stream;
 @Service
 public class PlayerBroadCastService {
     int playerspeed=0;
+    void existsbyplayerspeed(int playerspeed){
+        if(playerspeed!=0)getplayerspeed(playerspeed);
+        else getplayerspeed(0);
+    }
     Logger logger;
 
     void updatebyplayerspeed(int playerspeed){
