@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface PlayerRepository extends JpaRepository<String, PlayerConsumerdto>{
+
     List<String>findbyplayerspeedaccuracy(int playerspeedaccuracy );
     List<String>existsbyplayerspeedaccuracy(int playerspeedaccuracy);
 List<String>updatebyplayerspeedaccuracy(int playerspeedaccuracy);

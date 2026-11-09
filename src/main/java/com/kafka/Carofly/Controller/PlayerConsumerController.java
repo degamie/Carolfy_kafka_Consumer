@@ -1,9 +1,10 @@
-//WID(27/10/2026)(Sarthak Mittal(DegamieSign(PlayerConsumerCntrller(Param_Constr))#1
+//WID(9/11/2026)(Sarthak Mittal(DegamieSign(PlayerConsumerCntrller(Param_Constr))#1
 package com.kafka.Carofly.Controller;
 
 //import com.kafka.Carofly.dto.PlayerConsumerdto;
 //import com.kafka.Carofly.service.PlayerConsumer;
 import com.kafka.Carofly.dto.PlayerConsumerdto;
+import com.kafka.Carofly.repository.*;
 import com.kafka.Carofly.service.PlayerBroadCastService;
 import com.kafka.Carofly.service.PlayerConsumer;
 import org.springframework.ai.chat.client.ChatClient;
@@ -24,9 +25,14 @@ import java.util.List;
 
 public class PlayerConsumerController {
     @Autowired
+    public PlayerRepository playerRepository;
+    @Autowired
     public PlayerConsumer playerConsumer;
     @Autowired
     public PlayerBroadCastService playerBroadCastService;
+    List<String>getplayername(String playername){
+        return playerRepository.findbyplayername(playername);
+    }
     @GetMapping("/playeridasfloat")
     List<Float>getplayerIdAsfloat(float playeridasfloat){
         return playerConsumer.getplayerIdAsfloat(playeridasfloat);
