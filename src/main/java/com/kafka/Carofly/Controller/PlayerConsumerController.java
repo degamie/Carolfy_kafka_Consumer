@@ -1,4 +1,4 @@
-//WID(9/11/2026)(Sarthak Mittal(DegamieSign(PlayerConsumerCntrller(Param_Constr))#1
+//WID(13/11/2026)(Sarthak Mittal(DegamieSign(PlayerConsumerCntrller(Param_Constr))#1
 package com.kafka.Carofly.Controller;
 
 //import com.kafka.Carofly.dto.PlayerConsumerdto;
@@ -30,6 +30,9 @@ public class PlayerConsumerController {
     public PlayerConsumer playerConsumer;
     @Autowired
     public PlayerBroadCastService playerBroadCastService;
+    List<String>setplayername(String playername){
+        return playerRepository.savebyplayername(playername);
+    }
     List<String>getplayername(String playername){
         return playerRepository.findbyplayername(playername);
     }
