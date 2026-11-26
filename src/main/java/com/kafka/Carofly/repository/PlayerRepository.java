@@ -1,4 +1,4 @@
-//WID(23/11/2026)(Sarthak Mittal)(DegamieSign)(Finding#playercount)
+//WID(26/11/2026)(Sarthak Mittal)(DegamieSign)(Finding#playercount)
 package com.kafka.Carofly.repository;
 
 import com.kafka.Carofly.dto.PlayerConsumerdto;
@@ -10,7 +10,8 @@ import java.util.List;
 
 @Repository
 public interface PlayerRepository extends JpaRepository<String, PlayerConsumerdto>{
-     List<Integer>updatebyplayerscore(int playerscore);
+    List<Integer>existsbyplayerscore(int playerscore);
+    List<Integer>updatebyplayerscore(int playerscore);
     List<Integer>findbyplayercount(Integer playercount);
    List<String> existsbyplayermodifiedDate(Date playermodifiedDate);
     List<String>updatebyplayerModifiedDate(Date playermodifiedDate);
